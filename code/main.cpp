@@ -9,7 +9,6 @@
 #include <set>
 #include <tuple>
 #include <stdio.h>
-#include <io.h>
 #include <stdlib.h>
 #include <time.h>
 #include <random>
