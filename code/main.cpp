@@ -87,29 +87,29 @@ string create_directories(unsigned seed){
     string direc_name = to_string(seed);
     
     ostringstream oss_direc;
-    oss_direc <<"./runs/"<< direc_name;
+    oss_direc <<"mkdir -p ./runs/"<< direc_name;
     string dir_name = oss_direc.str();
     
-//    system(dir_name.c_str());
-    const int dir_err = mkdir(dir_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-    if (-1 == dir_err){
-        printf("Error creating directory!n");
-        exit(1);
-    }
-    else {
+    system(dir_name.c_str());
+//    const int dir_err = mkdir(dir_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+//    if (-1 == dir_err){
+//        printf("Error creating directory!n");
+//        exit(1);
+//    }
+//    else {
         ostringstream oss_name;
-        oss_name <<"./runs/"<< direc_name<<"\\data";
+        oss_name <<"mkdir -p ./runs/"<< direc_name<<"/data";
         string dim_name = oss_name.str();
-        mkdir(dim_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-//        system(dim_name.c_str());
+//        mkdir(dim_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)
+        system(dim_name.c_str());
         
         ostringstream oss_sim;
-        oss_sim <<"./runs/"<< direc_name<<"/data/simulation_data";
+        oss_sim <<"mkdir -p ./runs/"<< direc_name<<"/data/simulation_data";
         string sim_name = oss_sim.str();
         
-//        system(sim_name.c_str());
-        mkdir(sim_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-    }
+        system(sim_name.c_str());
+//        mkdir(sim_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)
+//    }
     return direc_name;
 }
 
@@ -155,7 +155,7 @@ main(int argc, char* argv[]){
 
     if (*argv[5] == 'p'){
         ofstream prod_file;
-        prod_file.open ("./seeds",fstream::app);
+        prod_file.open ("./seeds.csv",fstream::app);
         prod_file<<seed<<","<<argv[3]<<","<<argv[1]<<","<<argv[4]<<endl;
         prod_file.close();
     }
@@ -203,7 +203,7 @@ main(int argc, char* argv[]){
 
     vector<double> time_vec {};
 
-    ifstream time_values_file{"time_vals", ios::in};
+    ifstream time_values_file{"time_vals.txt", ios::in};
     string input_time {};
 //    double curr_lamb {};
     
