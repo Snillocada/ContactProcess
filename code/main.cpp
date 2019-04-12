@@ -100,7 +100,7 @@ string create_directories(unsigned seed){
         ostringstream oss_name;
         oss_name <<"./runs/"<< direc_name<<"\\data";
         string dim_name = oss_name.str();
-        mkdir(dim_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)
+        mkdir(dim_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 //        system(dim_name.c_str());
         
         ostringstream oss_sim;
@@ -108,7 +108,7 @@ string create_directories(unsigned seed){
         string sim_name = oss_sim.str();
         
 //        system(sim_name.c_str());
-        mkdir(sim_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)
+        mkdir(sim_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     }
     return direc_name;
 }
