@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="ContactProcessGit" Database="" Version="10.0.0">
-  <Project Name="ContactProcessGit" Path="ContactProcessGit/ContactProcessGit.project" Active="Yes"/>
+  <Project Name="ContactProcess" Path="ContactProcess/ContactProcess.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
       <Project Name="ContactProcessGit" ConfigName="Debug"/>
+      <Project Name="ContactProcess" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="ContactProcessGit" ConfigName="Release"/>
+      <Project Name="ContactProcess" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>
