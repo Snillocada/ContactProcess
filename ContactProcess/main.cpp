@@ -114,7 +114,7 @@ string create_directories(unsigned seed){
 }
 
 int main(int argc, char* argv[]){
-    cout<<"Please let this work."<<endl;
+    cout<<"Hello?"<<endl;
     
 //     Program__R__Number of repeats__Dimension___Lambda__Production or test
     
