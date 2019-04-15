@@ -239,7 +239,9 @@ int main(int argc, char* argv[]){
     time_file<<endl;
     
     { 
+        cout<<"creating particle"<<endl;
     particle* adam_ptr(new particle());
+    cout<<"Setting particle things"<<endl;
     adam_ptr->set_R(R);
     adam_ptr->set_dim(dimension);
     cout<<"Completed setting R and dim"<<endl;
