@@ -113,7 +113,7 @@ string create_directories(unsigned seed){
     return direc_name;
 }
 
-main(int argc, char* argv[]){
+int main(int argc, char* argv[]){
     
 //     Program__R__Number of repeats__Dimension___Lambda__Production or test
     
@@ -292,6 +292,8 @@ main(int argc, char* argv[]){
 
         int num_of_particles = particle_list.at(0)->get_num_particles();
         lambda_file << num_of_particles << ",";
+        
+        cout<<".";
         
         uniform_int_distribution<int> di(0,sites*num_of_particles-1);
         uniform_real_distribution<double> dt(0,1);
