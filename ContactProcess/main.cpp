@@ -114,7 +114,6 @@ string create_directories(unsigned seed){
 }
 
 int main(int argc, char* argv[]){
-    cout<<"Hello?"<<endl;
     
 //     Program__R__Number of repeats__Dimension___Lambda__Production or test
     
@@ -239,10 +238,9 @@ int main(int argc, char* argv[]){
     time_file<<endl;
     
     { 
-        cout<<"creating particle"<<endl;
     particle* adam_ptr(new particle());
-    cout<<"Setting particle things"<<endl;
     adam_ptr->set_R(R);
+    cout<<"Can i trust you R?"<<endl;
     adam_ptr->set_dim(dimension);
     cout<<"Completed setting R and dim"<<endl;
     }
