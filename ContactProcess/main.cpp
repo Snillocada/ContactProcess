@@ -240,7 +240,6 @@ int main(int argc, char* argv[]){
     { 
     particle* adam_ptr(new particle());
     adam_ptr->set_R(R);
-    cout<<"Can i trust you R?"<<endl;
     adam_ptr->set_dim(dimension);
     cout<<"Completed setting R and dim"<<endl;
     }

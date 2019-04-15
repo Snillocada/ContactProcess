@@ -35,7 +35,7 @@ std::vector <std::vector <int>> create_stensil_spawning_sites(int dim, int R){
     std::vector<std::vector<int>> stensil_vec {};
     
     std::ostringstream oss_stensil;
-    oss_stensil <<"./stensils/d_"<< dim<<"/stensil_R_"<<R;
+    oss_stensil <<"./stensils/stensil_R_"<<R;
     std::string stensil_name = oss_stensil.str();
     std::ifstream stensil_file;
     stensil_file.open (stensil_name,std::ios::in);
