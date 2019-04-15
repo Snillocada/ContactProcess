@@ -241,7 +241,6 @@ int main(int argc, char* argv[]){
     particle* adam_ptr(new particle());
     adam_ptr->set_R(R);
     adam_ptr->set_dim(dimension);
-    cout<<"Completed setting R and dim"<<endl;
     }
     
     for (size_t i{0};i<num_iterations;i++) {
@@ -257,7 +256,6 @@ int main(int argc, char* argv[]){
     sites = eve_ptr->get_num_sites();
     *sites_ptr = sites;
     eve_ptr->set_lambda(lambda);
-    cout<<"Completed setting lambda"<<endl;
     }
     srand(time(NULL));
     
@@ -271,13 +269,11 @@ int main(int argc, char* argv[]){
     { 
     particle* adam_ptr(new particle());    
     adam_ptr->reset_num_particles();
-    cout<<"number of particles reset"<<endl;
     }
     for( auto new_loc: position_list)
         particle_list.emplace_back(new particle(new_loc));    
 
     particle_list.at(0)->initialize_system_locations(position_list);
-    cout<<"Particles Created"<<endl;
     
     particle_list_pointer = &particle_list;
     
@@ -296,8 +292,6 @@ int main(int argc, char* argv[]){
 
         int num_of_particles = particle_list.at(0)->get_num_particles();
         lambda_file << num_of_particles << ",";
-        
-        cout<<".";
         
         uniform_int_distribution<int> di(0,sites*num_of_particles-1);
         uniform_real_distribution<double> dt(0,1);
