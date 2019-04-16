@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo apt install g++
+
+g++ -c particle.cpp -o particle.o
+g++ -c main.cpp -o main.o
+g++ particle.o main.o -o CPLinux
