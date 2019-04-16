@@ -1,0 +1,6 @@
+#!/bin/bash
+
+read -r -p "Commit message: " desc
+git add -A
+git commit -m "$desc"
+git push
