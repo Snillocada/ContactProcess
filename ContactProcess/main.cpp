@@ -238,7 +238,7 @@ int main(int argc, char* argv[]){
     time_file<<endl;
     { 
         cout<<"starting bracket"<<endl;
-        particle* adam_ptr = new particle();
+        particle* adam_ptr = new particle;
         cout<<"making pointer"<<endl;
         adam_ptr->set_R(R);
         adam_ptr->set_dim(dimension);
