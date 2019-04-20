@@ -114,6 +114,7 @@ string create_directories(unsigned seed){
 }
 
 int main(int argc, char* argv[]){
+    cout<<"cout check"<<endl;
     
 //     Program__R__Number of repeats__Dimension___Lambda__Production or test
     
@@ -133,6 +134,7 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
+    cout<<"directory creationg check"<<endl;
     ostringstream oss_save;
     oss_save <<"./runs/"<< direc_name<<"/run";
     string save_name = oss_save.str();
@@ -175,6 +177,8 @@ int main(int argc, char* argv[]){
 //    dir_oss << "../data/dim_" << dimension;
 //    string dir_name = dir_oss.str();
 //    int dir {mkdir(dir_name)};
+
+    cout<<"system data saved"<<endl;
     
     ostringstream oss_name;
     oss_name <<"./runs/"<< direc_name<<"/data/simulation_data"<<"/size";
@@ -193,6 +197,8 @@ int main(int argc, char* argv[]){
     string aver_name = oss_aver.str();
     ofstream aver_file;
     aver_file.open (aver_name);
+    
+    cout<<"output files made"<<endl;
     
     aver_file << "Time,Sum,Sqr_Sum,Iterations"<<endl;
     
@@ -217,6 +223,7 @@ int main(int argc, char* argv[]){
 //        cout<<input_time<<endl;
     }  
     time_values_file.close();
+    cout<<"time file read"<<endl;
     
     vector<int> curr_sum_vec(time_vec.size());
     vector<int> curr_sqr_sum_vec(time_vec.size());
@@ -236,7 +243,7 @@ int main(int argc, char* argv[]){
         time_file<<i<<",";
     }
     time_file<<endl;
-    cout<<"-";
+    cout<<"output files populated"<<endl;;
     { 
     unique_ptr<particle> adam_ptr(new particle());
     adam_ptr->set_R(R);
