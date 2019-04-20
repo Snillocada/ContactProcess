@@ -45,6 +45,7 @@ public:
     
     particle(std::vector<int> loc =  std::vector<int>(dimension,0));
     ~particle();
+    static void operator delete(void* ptr);
 
 };
 

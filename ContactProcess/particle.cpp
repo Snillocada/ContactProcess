@@ -114,6 +114,10 @@ particle::~particle()
     
     particle_locations.erase(it);
 }
+static void particle::operator delete(void* ptr)
+{
+    delete (ptr);
+}
 
 int particle::get_num_sites() const{
 //    std::cout<<"num of sites: "<<spawning_sites.size()<<std::endl;
