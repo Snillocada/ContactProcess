@@ -238,7 +238,7 @@ int main(int argc, char* argv[]){
     time_file<<endl;
     
     { 
-    particle* adam_ptr(new particle());
+    unique_ptr<particle> adam_ptr(new particle());
     adam_ptr->set_R(R);
     adam_ptr->set_dim(dimension);
     }
@@ -252,7 +252,7 @@ int main(int argc, char* argv[]){
     int* sites_ptr = &sites;
 
     {
-    particle* eve_ptr(new particle());
+    unique_ptr<particle> eve_ptr(new particle());
     sites = eve_ptr->get_num_sites();
     *sites_ptr = sites;
     eve_ptr->set_lambda(lambda);
@@ -267,7 +267,7 @@ int main(int argc, char* argv[]){
     particle_list.reserve(begin_num);
     particle_list.clear();
     { 
-    particle* adam_ptr(new particle());    
+    unique_ptr<particle> adam_ptr(new particle());    
     adam_ptr->reset_num_particles();
     }
     for( auto new_loc: position_list)
