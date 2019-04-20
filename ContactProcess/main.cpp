@@ -237,16 +237,11 @@ int main(int argc, char* argv[]){
     }
     time_file<<endl;
     { 
-        cout<<"starting bracket"<<endl;
         particle *adam_ptr = new particle;
-        cout<<"making pointer"<<endl;
         adam_ptr->set_R(R);
         adam_ptr->set_dim(dimension);
-        cout<<"deleting pointer"<<endl;
         particle::operator delete(adam_ptr);
-        cout<<"in bracket"<<endl;
     }
-    cout<<"after bracket"<<endl;
     for (size_t i{0};i<num_iterations;i++) {
         cout << lambda;
         lambda_file << lambda <<",";
@@ -254,12 +249,12 @@ int main(int argc, char* argv[]){
         
         int sites{0};
         int* sites_ptr = &sites;
-        cout<<"before second bracket"<<endl;
         {
-            unique_ptr<particle> eve_ptr(new particle());
+            particle *eve_ptr = new particle;
             sites = eve_ptr->get_num_sites();
             *sites_ptr = sites;
             eve_ptr->set_lambda(lambda);
+            particle::operator delete(eve_ptr);
         }
         cout<<"after second bracket"<<endl;
         srand(time(NULL));
@@ -272,8 +267,9 @@ int main(int argc, char* argv[]){
         particle_list.reserve(begin_num);
         particle_list.clear();
         { 
-        unique_ptr<particle> adam_ptr(new particle());    
+        particle *adam_ptr = new particle;  
         adam_ptr->reset_num_particles();
+        particle::operator delete(adam_ptr);
         }
         for( auto new_loc: position_list)
             particle_list.emplace_back(new particle(new_loc));    
