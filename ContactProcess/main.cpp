@@ -243,7 +243,6 @@ int main(int argc, char* argv[]){
         particle::operator delete(adam_ptr);
     }
     for (size_t i{0};i<num_iterations;i++) {
-        cout << lambda;
         lambda_file << lambda <<",";
         time_file << lambda << ",";
         
@@ -256,7 +255,6 @@ int main(int argc, char* argv[]){
             eve_ptr->set_lambda(lambda);
             particle::operator delete(eve_ptr);
         }
-        cout<<"after second bracket"<<endl;
         srand(time(NULL));
         
         vector<unique_ptr<particle>>* particle_list_pointer {nullptr};
