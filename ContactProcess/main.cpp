@@ -239,12 +239,11 @@ int main(int argc, char* argv[]){
     { 
         cout<<"starting bracket"<<endl;
         particle *adam_ptr = new particle;
-        delete adam_ptr;
         cout<<"making pointer"<<endl;
         adam_ptr->set_R(R);
         adam_ptr->set_dim(dimension);
         cout<<"deleting pointer"<<endl;
-
+        particle::operator delete adam_ptr;
         cout<<"in bracket"<<endl;
     }
     cout<<"after bracket"<<endl;
