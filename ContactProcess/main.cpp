@@ -240,6 +240,7 @@ int main(int argc, char* argv[]){
         unique_ptr<particle> adam_ptr(new particle());
         adam_ptr->set_R(R);
         adam_ptr->set_dim(dimension);
+        cout<<"in bracket"<<endl;
     }
     cout<<"after bracket"<<endl;
     for (size_t i{0};i<num_iterations;i++) {
