@@ -244,97 +244,97 @@ int main(int argc, char* argv[]){
     }
     
     for (size_t i{0};i<num_iterations;i++) {
-
-    lambda_file << lambda <<",";
-    time_file << lambda << ",";
-    
-    int sites{0};
-    int* sites_ptr = &sites;
-
-    {
-    unique_ptr<particle> eve_ptr(new particle());
-    sites = eve_ptr->get_num_sites();
-    *sites_ptr = sites;
-    eve_ptr->set_lambda(lambda);
-    }
-    srand(time(NULL));
-    
-    vector<unique_ptr<particle>>* particle_list_pointer {nullptr};
-    
-    set<vector<int>> position_list = get_starting_locations(begin_num,10*R*begin_num, generator, dimension);
-    
-    vector<unique_ptr<particle>> particle_list;
-    particle_list.reserve(begin_num);
-    particle_list.clear();
-    { 
-    unique_ptr<particle> adam_ptr(new particle());    
-    adam_ptr->reset_num_particles();
-    }
-    for( auto new_loc: position_list)
-        particle_list.emplace_back(new particle(new_loc));    
-
-    particle_list.at(0)->initialize_system_locations(position_list);
-    
-    particle_list_pointer = &particle_list;
-    
-//    display_particle_locations(particle_list_pointer);
-//    cout<<"This is how many particles I have in my vector: "<<particle_list.size()<<endl<<endl;
-    int rand_num{0};
-    double rand_prob {0.0};
-    double time_gap {0.0};
-    size_t time_level {0};
-    double max_time {time_vec.back()};
-    double curr_level_goal {time_vec.at(0)};
-    try{
-    while (time_gap<max_time){
-//        cout<<i;
-        time_file << time_gap << ",";
-
-        int num_of_particles = particle_list.at(0)->get_num_particles();
-        lambda_file << num_of_particles << ",";
+        cout << lambda;
+        lambda_file << lambda <<",";
+        time_file << lambda << ",";
         
-        uniform_int_distribution<int> di(0,sites*num_of_particles-1);
-        uniform_real_distribution<double> dt(0,1);
-        uniform_real_distribution<double> dd(0,lambda+0.5);
-        rand_num = di(generator);
-        rand_prob = dd(generator);
-        time_gap += -log(dt(generator))*(1/(num_of_particles*(lambda+0.5)));
-        
-        iterate_time(move(particle_list_pointer), rand_num, rand_prob, sites);
-        
-        if(particle_list.size()==0){
-            size_t generic_error {1};
-            throw generic_error;
+        int sites{0};
+        int* sites_ptr = &sites;
+
+        {
+        unique_ptr<particle> eve_ptr(new particle());
+        sites = eve_ptr->get_num_sites();
+        *sites_ptr = sites;
+        eve_ptr->set_lambda(lambda);
         }
+        srand(time(NULL));
         
-        num_of_particles = particle_list.at(0)->get_num_particles();
+        vector<unique_ptr<particle>>* particle_list_pointer {nullptr};
         
-        if (time_gap>curr_level_goal){
-            curr_sum_vec.at(time_level) += num_of_particles;
-            curr_sqr_sum_vec.at(time_level) += num_of_particles*num_of_particles;
-            curr_iterations_vec.at(time_level)++;
-            time_level++;
-            if (time_level<time_vec.size()){
-                curr_level_goal = time_vec.at(time_level);
-            }
-        }
-    }    
-    }
-    catch (size_t &ex){
+        set<vector<int>> position_list = get_starting_locations(begin_num,10*R*begin_num, generator, dimension);
+        
+        vector<unique_ptr<particle>> particle_list;
+        particle_list.reserve(begin_num);
         particle_list.clear();
-//        cout<<"All particles have died after "<<ex<<" iterations"<<endl<<endl;
-//        for (size_t j=1;j<(num_iterations-ex);j++){
-//            time_gap += 0.00002;
-//            time_file << time_gap<<",";
-//        }
-    }
-    lambda_file <<"\n";
-    time_file <<"\n";
-    
-    
-//    final_diff = abs(static_cast<double>(begin_num)-num_of_particles)/static_cast<double>(begin_num);
-    
-    particle_list.clear();
+        { 
+        unique_ptr<particle> adam_ptr(new particle());    
+        adam_ptr->reset_num_particles();
+        }
+        for( auto new_loc: position_list)
+            particle_list.emplace_back(new particle(new_loc));    
+
+        particle_list.at(0)->initialize_system_locations(position_list);
+        
+        particle_list_pointer = &particle_list;
+        
+    //    display_particle_locations(particle_list_pointer);
+    //    cout<<"This is how many particles I have in my vector: "<<particle_list.size()<<endl<<endl;
+        int rand_num{0};
+        double rand_prob {0.0};
+        double time_gap {0.0};
+        size_t time_level {0};
+        double max_time {time_vec.back()};
+        double curr_level_goal {time_vec.at(0)};
+        try{
+        while (time_gap<max_time){
+    //        cout<<i;
+            time_file << time_gap << ",";
+
+            int num_of_particles = particle_list.at(0)->get_num_particles();
+            lambda_file << num_of_particles << ",";
+            
+            uniform_int_distribution<int> di(0,sites*num_of_particles-1);
+            uniform_real_distribution<double> dt(0,1);
+            uniform_real_distribution<double> dd(0,lambda+0.5);
+            rand_num = di(generator);
+            rand_prob = dd(generator);
+            time_gap += -log(dt(generator))*(1/(num_of_particles*(lambda+0.5)));
+            
+            iterate_time(move(particle_list_pointer), rand_num, rand_prob, sites);
+            
+            if(particle_list.size()==0){
+                size_t generic_error {1};
+                throw generic_error;
+            }
+            
+            num_of_particles = particle_list.at(0)->get_num_particles();
+            
+            if (time_gap>curr_level_goal){
+                curr_sum_vec.at(time_level) += num_of_particles;
+                curr_sqr_sum_vec.at(time_level) += num_of_particles*num_of_particles;
+                curr_iterations_vec.at(time_level)++;
+                time_level++;
+                if (time_level<time_vec.size()){
+                    curr_level_goal = time_vec.at(time_level);
+                }
+            }
+        }    
+        }
+        catch (size_t &ex){
+            particle_list.clear();
+    //        cout<<"All particles have died after "<<ex<<" iterations"<<endl<<endl;
+    //        for (size_t j=1;j<(num_iterations-ex);j++){
+    //            time_gap += 0.00002;
+    //            time_file << time_gap<<",";
+    //        }
+        }
+        lambda_file <<"\n";
+        time_file <<"\n";
+        
+        
+    //    final_diff = abs(static_cast<double>(begin_num)-num_of_particles)/static_cast<double>(begin_num);
+        
+        particle_list.clear();
     }
     
     for (size_t i{0};i<time_vec.size();i++){
