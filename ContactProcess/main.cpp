@@ -238,6 +238,7 @@ int main(int argc, char* argv[]){
     time_file<<endl;
     
     { 
+    cout<<"-";
     unique_ptr<particle> adam_ptr(new particle());
     adam_ptr->set_R(R);
     adam_ptr->set_dim(dimension);
