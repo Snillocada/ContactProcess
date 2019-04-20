@@ -237,9 +237,10 @@ int main(int argc, char* argv[]){
     }
     time_file<<endl;
     { 
-        unique_ptr<particle> adam_ptr(new particle());
+        particle* adam_ptr = new particle();
         adam_ptr->set_R(R);
         adam_ptr->set_dim(dimension);
+        delete adam_ptr;
         cout<<"in bracket"<<endl;
     }
     cout<<"after bracket"<<endl;
