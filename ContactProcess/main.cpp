@@ -243,7 +243,7 @@ int main(int argc, char* argv[]){
         adam_ptr->set_R(R);
         adam_ptr->set_dim(dimension);
         cout<<"deleting pointer"<<endl;
-        particle::operator delete adam_ptr;
+        particle::operator delete(adam_ptr);
         cout<<"in bracket"<<endl;
     }
     cout<<"after bracket"<<endl;
