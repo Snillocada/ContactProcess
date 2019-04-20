@@ -31,7 +31,7 @@ void update_output(std::vector <std::vector <int>>* output_ptr, size_t &position
 }
 
 std::vector <std::vector <int>> create_stensil_spawning_sites(int dim, int R){
-
+    std::cout <<".";
     std::vector<std::vector<int>> stensil_vec {};
     
     std::ostringstream oss_stensil;
@@ -70,6 +70,7 @@ std::vector <std::vector <int>> create_stensil_spawning_sites(int dim, int R){
     stensil_file.close();    
 //    std::cout<<"Stenstil now has size: "<<output.size()<<std::endl;
     auto output = stensil_vec;
+    std::cout<<"/";
     return output;
 }
 
