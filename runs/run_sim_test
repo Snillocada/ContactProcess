@@ -4,15 +4,14 @@ chmod o+r stensils/*
 
 LAMBDAS=('1.0' '1.1' '1.2' '1.3' '1.4' '1.5' '1.6' '1.7' '1.8' '1.9' '2.0')
 FILES=stensils/stensil_R_10*.csv
-
-for lambda in "${LAMBDAS[@]}"
-do
-	for file in $FILES
+for file in $FILES
+do   
+	for lambda in "${LAMBDAS[@]}"
 	do
 		current_file=$(echo $(basename $file))
 		number=$(echo $current_file | tr -dc '0-9')
-		sudo ./CPLinux $number 3 1 $lambda t &
+		./CPLinux $number 3 1 $lambda t &
 	done
-	echo $lambda
+	wait
+	echo '.'
 done
-wait
