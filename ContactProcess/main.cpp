@@ -284,8 +284,9 @@ int main(int argc, char* argv[]){
         size_t time_level {0};
         double max_time {time_vec.back()};
         double curr_level_goal {time_vec.at(0)};
+        double time_diff {1.0};
         try{
-        while (time_gap<max_time){
+        while ((time_gap<max_time)&&(time_diff>(1e-8))){
     //        cout<<i;
             time_file << time_gap << ",";
 
@@ -297,7 +298,8 @@ int main(int argc, char* argv[]){
             uniform_real_distribution<double> dd(0,lambda+0.5);
             rand_num = di(generator);
             rand_prob = dd(generator);
-            time_gap += -log(dt(generator))*(1/(num_of_particles*(lambda+0.5)));
+            time_diff = -log(dt(generator))*(1/(num_of_particles*(lambda+0.5)));
+            time_gap += time_diff;
             
             iterate_time(move(particle_list_pointer), rand_num, rand_prob, sites);
             
@@ -333,6 +335,19 @@ int main(int argc, char* argv[]){
         
     //    final_diff = abs(static_cast<double>(begin_num)-num_of_particles)/static_cast<double>(begin_num);
         
+
+        if (time_diff<(1e-8)){
+            cout<<"Time Difference Break"<<endl;
+            int num_of_particles = particle_list.at(0)->get_num_particles();
+            cout<<"number of particles successful"<<endl;
+            while(time_level<time_vec.size()){
+                curr_sum_vec.at(time_level) += num_of_particles;
+                curr_sqr_sum_vec.at(time_level) += num_of_particles*num_of_particles;
+                curr_iterations_vec.at(time_level)++;
+                time_level++;
+                num_of_particles += num_of_particles;
+            }
+        }
         particle_list.clear();
     }
     
