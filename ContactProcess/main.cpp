@@ -337,9 +337,7 @@ int main(int argc, char* argv[]){
         
 
         if (time_diff<(1e-8)){
-            cout<<"Time Difference Break"<<endl;
             unsigned long int num_of_particles = particle_list.at(0)->get_num_particles();
-            cout<<"number of particles successful"<<endl;
             while(time_level<time_vec.size()){
                 curr_sum_vec.at(time_level) += num_of_particles;
                 curr_sqr_sum_vec.at(time_level) += num_of_particles*num_of_particles;
