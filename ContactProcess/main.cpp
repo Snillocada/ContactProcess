@@ -286,7 +286,7 @@ int main(int argc, char* argv[]){
         double curr_level_goal {time_vec.at(0)};
         double time_diff {1.0};
         try{
-        while ((time_gap<max_time)&&(time_diff>(1e-8))){
+        while ((time_gap<max_time)&&(time_diff>(1e-6))){
     //        cout<<i;
             time_file << time_gap << ",";
 
@@ -336,7 +336,7 @@ int main(int argc, char* argv[]){
     //    final_diff = abs(static_cast<double>(begin_num)-num_of_particles)/static_cast<double>(begin_num);
         
 
-        if (time_diff<(1e-8)){
+        if (time_diff<(1e-6)){
             unsigned long int num_of_particles = particle_list.at(0)->get_num_particles();
             while(time_level<time_vec.size()){
                 curr_sum_vec.at(time_level) += num_of_particles;
