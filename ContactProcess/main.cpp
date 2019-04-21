@@ -218,8 +218,8 @@ int main(int argc, char* argv[]){
     }  
     time_values_file.close();
     
-    vector<int> curr_sum_vec(time_vec.size());
-    vector<int> curr_sqr_sum_vec(time_vec.size());
+    vector<unsigned long int> curr_sum_vec(time_vec.size());
+    vector<unsigned long int> curr_sqr_sum_vec(time_vec.size());
     vector<int> curr_iterations_vec(time_vec.size());
 
     double lambda {stod(argv[4])};
@@ -338,7 +338,7 @@ int main(int argc, char* argv[]){
 
         if (time_diff<(1e-8)){
             cout<<"Time Difference Break"<<endl;
-            int num_of_particles = particle_list.at(0)->get_num_particles();
+            unsigned long int num_of_particles = particle_list.at(0)->get_num_particles();
             cout<<"number of particles successful"<<endl;
             while(time_level<time_vec.size()){
                 curr_sum_vec.at(time_level) += num_of_particles;
