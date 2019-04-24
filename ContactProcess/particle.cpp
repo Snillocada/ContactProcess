@@ -181,8 +181,8 @@ std::unique_ptr<particle> particle::spawn_particle(int &offset){
     }
     else{
         loc = *iter;
-        for (size_t i{0};i<loc.size();i++){
-            loc.at(i) = loc.at(i) + location.at(i);
+        for (size_t i{0}; i<loc.size(); i++){
+            loc.at(i) = loc.at(i) + particle::location.at(i);
         }
     }
     
