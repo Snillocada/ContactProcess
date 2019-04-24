@@ -168,9 +168,7 @@ void particle::set_dim(size_t new_val){
 
 std::unique_ptr<particle> particle::spawn_particle(int &offset){
 //    std::cout<<"size_" <<particle::particle_locations.size()<<std::endl;
-    std::cout<<"I hope it gets here"<<std::endl;
     std::vector<std::vector<int>>::iterator iter = particle::stensil.begin();
-    std::cout<<"is it here?"<<std::endl;
 
     std::advance(iter, offset);
     
@@ -185,7 +183,6 @@ std::unique_ptr<particle> particle::spawn_particle(int &offset){
         for (size_t i{0}; i<loc.size(); i++){
             loc.at(i) = loc.at(i) + location.at(i);
         }
-        std::cout<<"or is it here"<<std::endl;
     }
     
 //    std::cout<<"Spawning particle in location "<<loc.at(0)<<"...";
