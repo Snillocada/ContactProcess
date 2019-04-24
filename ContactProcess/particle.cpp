@@ -93,7 +93,7 @@ particle::particle(std::vector<int> loc)
 //        std::cout<<"Creating particle in location: "<<loc.at(0)<<std::endl;
         ++number_of_particles;
 //        std::set<std::vector<int>> spawning_sites {};
-        spawning_sites = get_spawning_sites(loc, stensil);
+//        spawning_sites = get_spawning_sites(loc, stensil);
 //        std::cout<<"I thought this was right? "<<spawning_sites.size()<<std::endl;
 //        std::iota (std::begin(spawning_sites), std::end(spawning_sites), loc-spawning_range);
 //        spawning_sites.erase(spawning_sites.begin()+spawning_range-1);
@@ -169,18 +169,21 @@ void particle::set_dim(size_t new_val){
 std::unique_ptr<particle> particle::spawn_particle(int &offset){
 //    std::cout<<"size_" <<particle::particle_locations.size()<<std::endl;
     
-    std::set<std::vector<int>>::iterator iter = spawning_sites.begin();
+    std::set<std::vector<int>>::iterator iter = particle::stensil.begin();
 
     std::advance(iter, offset);
     
     std::vector<int> loc{};
     
-    if (iter == spawning_sites.end()){
+    if (iter == particle::stensil.end()){
 //        std::cout<<"bug: "<<spawning_sites.size()<<"/"<<offset<<std::endl;
         throw 1;
     }
     else{
         loc = *iter;
+        for (size_t i{0};i<loc.size();i++){
+            loc.at(i) = loc.at(i) location.at(i);
+        }
     }
     
 //    std::cout<<"Spawning particle in location "<<loc.at(0)<<"...";
