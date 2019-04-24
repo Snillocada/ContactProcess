@@ -3,7 +3,7 @@
 chmod o+r stensils/*
 
 LAMBDAS=('1.1' '1.2' '1.3' '1.4' '1.5' '1.6' '1.7' '1.8')
-FILES=stensils/stensil_R_10.csv
+FILES=stensils/stensil_R_11.csv
 for file in $FILES
 do   
 	current_file=$(echo $(basename $file))
@@ -12,7 +12,7 @@ do
 	do
 		current_file=$(echo $(basename $file))
 		number=$(echo $current_file | tr -dc '0-9')
-		./CPLinux $number 5 1 $lambda t &
+		./CPLinux $number 5 5 $lambda t &
 	done
 	wait
 	echo $number
