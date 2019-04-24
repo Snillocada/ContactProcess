@@ -236,12 +236,14 @@ int main(int argc, char* argv[]){
         time_file<<i<<",";
     }
     time_file<<endl;
+    cout<<"does it get to the constructor?"<<endl;
     { 
         particle *adam_ptr = new particle;
         adam_ptr->set_R(R);
         adam_ptr->set_dim(dimension);
         particle::operator delete(adam_ptr);
     }
+    cout<<"does the constructor work?"<<endl;
     for (size_t i{0};i<num_iterations;i++) {
         lambda_file << lambda <<",";
         time_file << lambda << ",";
