@@ -169,7 +169,7 @@ void particle::set_dim(size_t new_val){
 std::unique_ptr<particle> particle::spawn_particle(int &offset){
 //    std::cout<<"size_" <<particle::particle_locations.size()<<std::endl;
     
-    std::set<std::vector<int>>::iterator iter = particle::stensil.begin();
+    std::vector<std::vector<int>>::iterator iter = particle::stensil.begin();
 
     std::advance(iter, offset);
     
