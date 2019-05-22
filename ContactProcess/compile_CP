@@ -1,8 +1,5 @@
 #!/bin/bash
 
-sudo apt update
-sudo apt install g++
-
 g++ -std=c++14 -c particle.cpp -o particle.o
 g++ -std=c++14 -c main.cpp -o main.o
 g++ -std=c++14  particle.o main.o -o CPLinux
