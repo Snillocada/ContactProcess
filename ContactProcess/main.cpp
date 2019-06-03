@@ -47,10 +47,10 @@ void iterate_time(vector<unique_ptr<particle>>* particles, int rand_num, double 
     }
 }
 
-set<vector<int>> get_starting_locations(size_t num, double width, default_random_engine gen, size_t dim){
+set<vector<long int>> get_starting_locations(size_t num, double width, default_random_engine gen, size_t dim){
     
 
-    uniform_int_distribution<int> d(-width,width);
+    uniform_int_distribution<long int> d(-width,width);
     
     set<vector<long int>> position_list;
     
@@ -259,7 +259,7 @@ int main(int argc, char* argv[]){
         
         vector<unique_ptr<particle>>* particle_list_pointer {nullptr};
         
-        set<vector<int>> position_list = get_starting_locations(begin_num,10*R*begin_num, generator, dimension);
+        set<vector<long int>> position_list = get_starting_locations(begin_num,10*R*begin_num, generator, dimension);
         
         vector<unique_ptr<particle>> particle_list;
         particle_list.reserve(begin_num);
@@ -290,7 +290,7 @@ int main(int argc, char* argv[]){
     //        cout<<i;
             time_file << time_gap << ",";
 
-            int num_of_particles = particle_list.at(0)->get_num_particles();
+            long int num_of_particles = particle_list.at(0)->get_num_particles();
             lambda_file << num_of_particles << ",";
             
             uniform_int_distribution<long int> di(0,sites*num_of_particles-1);

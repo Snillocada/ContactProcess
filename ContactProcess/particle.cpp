@@ -17,21 +17,21 @@
 #include <sstream>
 
 std::set <std::vector<long int>> particle::particle_locations;
-int particle::number_of_particles {-1};
+long int particle::number_of_particles {-1};
 double particle::lambda{0.5};
 const double particle::epsilon{0.5};
 double particle::spawning_range{5};
 int particle::dimension{1};
-std::vector <std::vector<int>> particle::stensil;
+std::vector <std::vector<long int>> particle::stensil;
 
-void update_output(std::vector <std::vector <int>>* output_ptr, size_t &position, size_t dim, size_t R){
+void update_output(std::vector <std::vector <long int>>* output_ptr, size_t &position, size_t dim, size_t R){
     for (size_t j=0;j<dim;j++){
-        output_ptr->at(position).at(j) += (position/static_cast<int>(pow((2*R)+1,j)))%((2*R)+1);
+        output_ptr->at(position).at(j) += (position/static_cast<long int>(pow((2*R)+1,j)))%((2*R)+1);
     }   
 }
 
-std::vector <std::vector <int>> create_stensil_spawning_sites(int dim, int R){
-    std::vector<std::vector<int>> stensil_vec {};
+std::vector <std::vector <long int>> create_stensil_spawning_sites(int dim, int R){
+    std::vector<std::vector<long int>> stensil_vec {};
     
     std::ostringstream oss_stensil;
     oss_stensil <<"./stensils/stensil_R_"<<R<<".csv";
@@ -45,7 +45,7 @@ std::vector <std::vector <int>> create_stensil_spawning_sites(int dim, int R){
 
     
     while (!stensil_file.eof()) {
-        std::vector<int> current_coord {};
+        std::vector<long int> current_coord {};
         std::stringstream ss;
         std::getline(stensil_file,coordinate);
         ss.str (coordinate);
@@ -134,7 +134,7 @@ int particle::get_spawning_range() const{
     return spawning_range;
 }
 
-int particle::get_num_particles(){
+long int particle::get_num_particles(){
     return number_of_particles;
 }
 
@@ -146,7 +146,7 @@ std::set <std::vector<int>> particle::get_particle_locations() const{
     return particle_locations;
 }
 
-std::set <std::vector<int>>   particle::get_spawn_sites() const{
+std::set <std::vector<long int>>   particle::get_spawn_sites() const{
     return spawning_sites;
 }
 
@@ -166,9 +166,9 @@ void particle::set_dim(size_t new_val){
     particle::stensil = create_stensil_spawning_sites(new_val, spawning_range);
 }
 
-std::unique_ptr<particle> particle::spawn_particle(int &offset){
+std::unique_ptr<particle> particle::spawn_particle(long int &offset){
 //    std::cout<<"size_" <<particle::particle_locations.size()<<std::endl;
-    std::vector<std::vector<int>>::iterator iter = particle::stensil.begin();
+    std::vector<std::vector<long int>>::iterator iter = particle::stensil.begin();
 
     std::advance(iter, offset);
     
@@ -206,7 +206,7 @@ std::unique_ptr<particle> particle::spawn_particle(int &offset){
     }
 }
 
-std::pair<std::unique_ptr<particle>,bool> particle::poke_particle(int &old_rand, double prob){
+std::pair<std::unique_ptr<particle>,bool> particle::poke_particle(long int &old_rand, double prob){
 //    double rand_num{0.0};
 //    rand_num = (rand()%99)/100.0;
 //    std::default_random_engine generator;
