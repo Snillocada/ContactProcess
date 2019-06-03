@@ -52,12 +52,12 @@ set<vector<int>> get_starting_locations(size_t num, double width, default_random
 
     uniform_int_distribution<int> d(-width,width);
     
-    set<vector<int>> position_list;
+    set<vector<long int>> position_list;
     
     while (position_list.size()<num){
-        vector<int> position_vec {};
+        vector<long int> position_vec {};
         for (size_t i{0};i<dim;i++){
-            int position = d(gen);
+            long int position = d(gen);
             position_vec.push_back(position);
         }
 
@@ -293,7 +293,7 @@ int main(int argc, char* argv[]){
             int num_of_particles = particle_list.at(0)->get_num_particles();
             lambda_file << num_of_particles << ",";
             
-            uniform_int_distribution<int> di(0,sites*num_of_particles-1);
+            uniform_int_distribution<long int> di(0,sites*num_of_particles-1);
             uniform_real_distribution<double> dt(0,1);
             uniform_real_distribution<double> dd(0,lambda+0.5);
             rand_num = di(generator);

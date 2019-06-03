@@ -37,7 +37,7 @@ public:
     static void reset_num_particles();
     
     std::set <std::vector<int>> get_particle_locations() const;
-    std::set <std::vector<int>> get_spawn_sites() const;
+//    std::set <std::vector<int>> get_spawn_sites() const;
     
     void set_lambda(double);
     void set_R(size_t new_val);

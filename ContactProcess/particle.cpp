@@ -72,21 +72,21 @@ std::vector <std::vector <int>> create_stensil_spawning_sites(int dim, int R){
     return output;
 }
 
-std::set <std::vector <int>> get_spawning_sites(std::vector <int> loc, std::vector<std::vector<int>> stensil){
-    auto new_locs = stensil;
-    for (auto &i:new_locs){
-        for (size_t j{0};j<i.size();j++){
-            i.at(j) += loc.at(j);
-        }
-    }
-    std::set <std::vector <int>> output_set(new_locs.begin(),new_locs.end());
-    
-//    std::set<std::vector<int>>::iterator iter = output_set.begin();
-//    std::advance(iter,1);
-//    std::cout<<"stensil_"<<stensil.size()<<"spawning_"<<output_set.size()<<std::endl;
-    
-    return output_set;
-}
+//std::set <std::vector <int>> get_spawning_sites(std::vector <int> loc, std::vector<std::vector<int>> stensil){
+//    auto new_locs = stensil;
+//    for (auto &i:new_locs){
+//        for (size_t j{0};j<i.size();j++){
+//            i.at(j) += loc.at(j);
+//        }
+//    }
+//    std::set <std::vector <int>> output_set(new_locs.begin(),new_locs.end());
+//    
+////    std::set<std::vector<int>>::iterator iter = output_set.begin();
+////    std::advance(iter,1);
+////    std::cout<<"stensil_"<<stensil.size()<<"spawning_"<<output_set.size()<<std::endl;
+//    
+//    return output_set;
+//}
 
 particle::particle(std::vector<long int> loc)
     : location{loc} {
@@ -109,7 +109,7 @@ particle::~particle()
 //    std::cout<<"Destroying particle in location "<<location.at(0)<<std::endl;
     --number_of_particles;
     
-    std::set<std::vector<int>>::iterator it;
+    std::set<std::vector<long int>>::iterator it;
     it = find(particle_locations.begin(), particle_locations.end(),location);
     
     particle_locations.erase(it);
@@ -124,7 +124,7 @@ int particle::get_num_sites() const{
     return particle::stensil.size();
 }
 
-void particle::initialize_system_locations(std::set<std::vector<int>> init_pos){
+void particle::initialize_system_locations(std::set<std::vector<long int>> init_pos){
 //    std::cout<<"This is the size of the location list before: "<<particle_locations.size()<<std::endl;
     particle_locations = init_pos;
 //    std::cout<<"This is the size of it after: "<<particle_locations.size()<<std::endl<<std::endl;
