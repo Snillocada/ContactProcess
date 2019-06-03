@@ -336,7 +336,7 @@ int main(int argc, char* argv[]){
     //    final_diff = abs(static_cast<double>(begin_num)-num_of_particles)/static_cast<double>(begin_num);
         
 
-        if (time_diff<(1e-6)){
+        if ((time_diff<(1e-6))&&(particle_list.size()!=0)){
             unsigned long int num_of_particles = particle_list.at(0)->get_num_particles();
             while(time_level<time_vec.size()){
                 curr_sum_vec.at(time_level) += num_of_particles;
