@@ -32,12 +32,12 @@ public:
 
     std::unique_ptr<particle>  spawn_particle(long int &offset);
     
-    std::pair<std::unique_ptr<particle>,bool> poke_particle(int &rand, double prob);
+    std::pair<std::unique_ptr<particle>,bool> poke_particle(long int &rand, double prob);
     static long int get_num_particles();
     static void reset_num_particles();
     
     std::set <std::vector<long int>> get_particle_locations() const;
-//    std::set <std::vector<int>> get_spawn_sites() const;
+    std::set <std::vector<long int>> get_spawn_sites() const;
     
     void set_lambda(double);
     void set_R(size_t new_val);

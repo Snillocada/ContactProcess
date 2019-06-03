@@ -119,7 +119,7 @@ static void particle::operator delete(void* ptr)
     delete (ptr);
 }
 
-int particle::get_num_sites() const{
+long int particle::get_num_sites() const{
 //    std::cout<<"num of sites: "<<spawning_sites.size()<<std::endl;
     return particle::stensil.size();
 }
@@ -142,7 +142,7 @@ void particle::reset_num_particles(){
     number_of_particles = 0;
 }
 
-std::set <std::vector<int>> particle::get_particle_locations() const{
+std::set <std::vector<long int>> particle::get_particle_locations() const{
     return particle_locations;
 }
 
