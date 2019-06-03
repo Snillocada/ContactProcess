@@ -28,12 +28,12 @@ using namespace std;
 
 void iterate_time(vector<unique_ptr<particle>>* particles, int rand_num, double prob, size_t sites) {
     
-    int chosen_particle = rand_num/(2*sites);
+    long int chosen_particle = rand_num/(2*sites);
     
     if(sites == 0){
         return;
     }
-    int spawn_site = rand_num % (sites);
+    long int spawn_site = rand_num % (sites);
         
     auto poked_part = particles->at(chosen_particle)->poke_particle(spawn_site,prob);
     

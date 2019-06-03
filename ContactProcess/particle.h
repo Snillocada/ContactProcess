@@ -8,7 +8,7 @@
 class particle
 {
     static std::vector <std::vector<int>> stensil;
-    static std::set <std::vector<int>> particle_locations;
+    static std::set <std::vector<long int>> particle_locations;
     static int number_of_particles;
     static double lambda;
     static const double epsilon;
@@ -16,7 +16,7 @@ class particle
     static int dimension;
     
 public:
-    std::vector<int> location;
+    std::vector<long int> location;
 private:
     std::set <std::vector <int>> spawning_sites;
     

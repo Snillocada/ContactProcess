@@ -16,7 +16,7 @@
 #include <random>
 #include <sstream>
 
-std::set <std::vector<int>> particle::particle_locations;
+std::set <std::vector<long int>> particle::particle_locations;
 int particle::number_of_particles {-1};
 double particle::lambda{0.5};
 const double particle::epsilon{0.5};
@@ -88,7 +88,7 @@ std::set <std::vector <int>> get_spawning_sites(std::vector <int> loc, std::vect
     return output_set;
 }
 
-particle::particle(std::vector<int> loc)
+particle::particle(std::vector<long int> loc)
     : location{loc} {
 //        std::cout<<"Creating particle in location: "<<loc.at(0)<<std::endl;
         ++number_of_particles;
@@ -172,7 +172,7 @@ std::unique_ptr<particle> particle::spawn_particle(int &offset){
 
     std::advance(iter, offset);
     
-    std::vector<int> loc{};
+    std::vector<long int> loc{};
     
     if (iter == particle::stensil.end()){
 //        std::cout<<"bug: "<<spawning_sites.size()<<"/"<<offset<<std::endl;
