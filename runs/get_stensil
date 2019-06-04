@@ -1,0 +1,5 @@
+#!/bin/bash
+
+read -r -p "Dimension: " desc
+mkdir stensils
+gsutil cp gs://contactprocess/stensils/d_$desc/* stensils/
