@@ -12,7 +12,7 @@ do
 	do
 		current_file=$(echo $(basename $file))
 		number=$(echo $current_file | tr -dc '0-9')
-		./CPLinux $number 10000 3 $lambda p &
+		./CPLinux $number 100000 3 $lambda p &
 	done
 	wait
 	echo $number

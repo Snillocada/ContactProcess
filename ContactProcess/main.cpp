@@ -26,10 +26,14 @@
 
 using namespace std;
 
-void iterate_time(vector<unique_ptr<particle>>* particles, int rand_num, double prob, size_t sites) {
+void iterate_time(vector<unique_ptr<particle>>* particles,long int rand_num, double prob, size_t sites) {
     
     long int chosen_particle = rand_num/(2*sites);
     
+    if (chosen_particle>100000){
+        return;
+    }
+
     if(sites == 0){
         return;
     }
