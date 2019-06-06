@@ -210,14 +210,15 @@ int main(int argc, char* argv[]){
     ifstream time_values_file{"time_vals.txt", ios::in};
     string input_time {};
 //    double curr_lamb {};
-    
     if (!time_values_file) {
         cerr <<"File open error" << endl;
         return 1;
     }
     while (!time_values_file.eof()) {
         getline(time_values_file, input_time);
-        time_vec.push_back(stod(input_time));
+	if (input_time != ""){
+            time_vec.push_back(stod(input_time));
+	}
 //        cout<<input_time<<endl;
     }  
     time_values_file.close();
@@ -225,10 +226,8 @@ int main(int argc, char* argv[]){
     vector<unsigned long int> curr_sum_vec(time_vec.size());
     vector<unsigned long int> curr_sqr_sum_vec(time_vec.size());
     vector<int> curr_iterations_vec(time_vec.size());
-
     double lambda {stod(argv[4])};
 //    cout<<lambda_vec.size()<<endl;
-    
     lambda_file<<"Lambda,";
     for (size_t i=0;i<num_iterations;i++){
         lambda_file<<i<<",";
