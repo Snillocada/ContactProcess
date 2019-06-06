@@ -2,7 +2,7 @@
 
 chmod o+r stensils/*
 
-LAMBDAS=('0.3' '0.4' '0.5' '0.6' '0.7' '0.8' '0.9' '1.0')
+LAMBDAS=('0.42' '0.44' '0.46' '0.48' '0.52' '0.54' '0.56' '0.58')
 FILES=stensils/*
 for file in $FILES
 do
@@ -12,7 +12,7 @@ do
 	do
 		current_file=$(echo $(basename $file))
 		number=$(echo $current_file | tr -dc '0-9')
-		./CPLinux $number 100000 3 $lambda p &
+		./CPLinux $number 35000 3 $lambda p &
 	done
 	wait
 	echo $number

@@ -289,12 +289,13 @@ int main(int argc, char* argv[]){
         double max_time {time_vec.back()};
         double curr_level_goal {time_vec.at(0)};
         double time_diff {1.0};
-        try{
-        while ((time_gap<max_time)&&(time_diff>(1e-6))){
+	long int num_of_particles {0};
+	try{
+        while ((time_gap<max_time)&&(num_of_particles>(1000))){
     //        cout<<i;
             time_file << time_gap << ",";
 
-            long int num_of_particles = particle_list.at(0)->get_num_particles();
+            num_of_particles = particle_list.at(0)->get_num_particles();
             lambda_file << num_of_particles << ",";
             
             uniform_int_distribution<long int> di(0,sites*num_of_particles-1);
@@ -340,14 +341,14 @@ int main(int argc, char* argv[]){
     //    final_diff = abs(static_cast<double>(begin_num)-num_of_particles)/static_cast<double>(begin_num);
         
 
-        if ((time_diff<(1e-6))&&(particle_list.size()!=0)){
+        if (particle_list.size()>1000){
             unsigned long int num_of_particles = particle_list.at(0)->get_num_particles();
             while(time_level<time_vec.size()){
                 curr_sum_vec.at(time_level) += num_of_particles;
                 curr_sqr_sum_vec.at(time_level) += num_of_particles*num_of_particles;
                 curr_iterations_vec.at(time_level)++;
                 time_level++;
-                num_of_particles += num_of_particles;
+                num_of_particles += 0.01*num_of_particles;
             }
         }
         particle_list.clear();
