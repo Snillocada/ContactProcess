@@ -288,13 +288,13 @@ int main(int argc, char* argv[]){
         double max_time {time_vec.back()};
         double curr_level_goal {time_vec.at(0)};
         double time_diff {1.0};
-	long int num_of_particles {0};
+	long int num_of_particles {};
 	try{
-        while ((time_gap<max_time)&&(num_of_particles>(1000))){
+        do {
     //        cout<<i;
             time_file << time_gap << ",";
 
-            num_of_particles = particle_list.at(0)->get_num_particles();
+            long int num_of_particles = particle_list.at(0)->get_num_particles();
             lambda_file << num_of_particles << ",";
             
             uniform_int_distribution<long int> di(0,sites*num_of_particles-1);
@@ -306,7 +306,6 @@ int main(int argc, char* argv[]){
             time_gap += time_diff;
             
             iterate_time(move(particle_list_pointer), rand_num, rand_prob, sites);
-            
             if(particle_list.size()==0){
                 size_t generic_error {1};
                 throw generic_error;
@@ -323,7 +322,8 @@ int main(int argc, char* argv[]){
                     curr_level_goal = time_vec.at(time_level);
                 }
             }
-        }    
+        }
+    	while ((time_gap<max_time)&&(num_of_particles<(500))); 	
         }
         catch (size_t &ex){
             particle_list.clear();
@@ -340,7 +340,7 @@ int main(int argc, char* argv[]){
     //    final_diff = abs(static_cast<double>(begin_num)-num_of_particles)/static_cast<double>(begin_num);
         
 
-        if (particle_list.size()>1000){
+        if (particle_list.size()>500){
             unsigned long int num_of_particles = particle_list.at(0)->get_num_particles();
             while(time_level<time_vec.size()){
                 curr_sum_vec.at(time_level) += num_of_particles;
