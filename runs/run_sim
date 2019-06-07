@@ -2,15 +2,15 @@
 
 chmod o+r stensils/*
 
-LAMBDAS=('-0.02' '-0.015' '-0.01' '-0.005' '0.00' '0.005' '0.01' '0.015')
-declare -A RANGES=(['1']='0.59' ['2']='0.55' ['4']='0.52' ['8']='0.51' ['15']='0.51' ['30']='0.51')
+LAMBDAS=('-0.005' '-0.003' '-0.002' '-0.001' '0.00' '0.001' '0.003' '0.005')
+declare -A RANGES=(['1']='0.6' ['2']='0.52' ['4']='0.505' ['8']='0.505' ['15']='0.505' ['30']='0.505'['60']='0.505' ['130']='0.505')
 for radius in "${!RANGES[@]}"
 do
 	number="${RANGES[$radius]}"
 	for displacement in "${LAMBDAS[@]}"
 	do
 		lambda=$(echo $number + $displacement | bc)
-		./CPLinux $radius 10000 5 $lambda p &
+		./CPLinux $radius 35000 3 $lambda p &
 	done
 	wait
 	echo $radius

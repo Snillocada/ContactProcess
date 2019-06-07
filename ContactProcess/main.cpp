@@ -323,7 +323,7 @@ int main(int argc, char* argv[]){
                 }
             }
         }
-    	while ((time_gap<max_time)&&(num_of_particles<(500))); 	
+    	while ((time_gap<max_time)&&(num_of_particles<(10000))); 	
         }
         catch (size_t &ex){
             particle_list.clear();
@@ -340,7 +340,7 @@ int main(int argc, char* argv[]){
     //    final_diff = abs(static_cast<double>(begin_num)-num_of_particles)/static_cast<double>(begin_num);
         
 
-        if (particle_list.size()>500){
+        if (particle_list.size()>10000){
             unsigned long int num_of_particles = particle_list.at(0)->get_num_particles();
             while(time_level<time_vec.size()){
                 curr_sum_vec.at(time_level) += num_of_particles;
