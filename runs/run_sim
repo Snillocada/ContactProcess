@@ -2,18 +2,16 @@
 
 chmod o+r stensils/*
 
-LAMBDAS=('0.5' '0.51' '0.52' '0.53' '0.54' '0.55' '0.56' '0.57')
-FILES=stensils/*
-for file in $FILES
+LAMBDAS=('-0.02' '-0.015' '-0.01' '-0.005' '0.00' '0.005' '0.01' '0.015')
+declare -A RANGES=(['1']='0.59' ['2']='0.55' ['4']='0.52' ['8']='0.51' ['15']='0.51' ['30']='0.51')
+for radius in "${!RANGES[@]}"
 do
-	current_file=$(echo $(basename $file))   
-	number=$(echo $current_file | tr -dc '0-9')  
-	for lambda in "${LAMBDAS[@]}"
+	number="${RANGES[$radius]}"
+	for displacement in "${LAMBDAS[@]}"
 	do
-		current_file=$(echo $(basename $file))
-		number=$(echo $current_file | tr -dc '0-9')
-		./CPLinux $number 35000 3 $lambda p &
+		lambda=$(echo $number + $displacement | bc)
+		./CPLinux $radius 10000 5 $lambda p &
 	done
 	wait
-	echo $number
+	echo $radius
 done

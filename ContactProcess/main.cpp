@@ -347,7 +347,7 @@ int main(int argc, char* argv[]){
                 curr_sqr_sum_vec.at(time_level) += num_of_particles*num_of_particles;
                 curr_iterations_vec.at(time_level)++;
                 time_level++;
-                num_of_particles += 0.01*num_of_particles;
+                num_of_particles += 0.1*num_of_particles;
             }
         }
         particle_list.clear();
