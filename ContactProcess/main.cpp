@@ -43,7 +43,6 @@ void iterate_time(vector<unique_ptr<particle>>* particles,long int rand_num, dou
     
     if(poked_part.second==false){
         vector<unique_ptr<particle>>::iterator it = particles->begin()+chosen_particle;
-//        cout<<"Particle in location "<<particles->at(chosen_particle)->location<<" has died"<<endl<<endl;
         particles->erase(it);
     }
     else if (poked_part.first!=nullptr){
@@ -65,7 +64,6 @@ set<vector<long int>> get_starting_locations(size_t num, double width, default_r
             position_vec.push_back(position);
         }
 
-//        int new_pos = static_cast<int>(round(position));
         position_list.insert(position_vec);
     }
     
@@ -95,16 +93,9 @@ string create_directories(unsigned seed){
     string dir_name = oss_direc.str();
     
     system(dir_name.c_str());
-//    const int dir_err = mkdir(dir_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-//    if (-1 == dir_err){
-//        printf("Error creating directory!n");
-//        exit(1);
-//    }
-//    else {
         ostringstream oss_name;
         oss_name <<"mkdir -p ./runs/"<< direc_name<<"/data";
         string dim_name = oss_name.str();
-//        mkdir(dim_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)
         system(dim_name.c_str());
         
         ostringstream oss_sim;
@@ -112,8 +103,6 @@ string create_directories(unsigned seed){
         string sim_name = oss_sim.str();
         
         system(sim_name.c_str());
-//        mkdir(sim_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)
-//    }
     return direc_name;
 }
 
@@ -163,22 +152,6 @@ int main(int argc, char* argv[]){
         prod_file<<seed<<","<<argv[3]<<","<<argv[1]<<","<<argv[4]<<endl;
         prod_file.close();
     }
-//    vector<double> lambda_vec {};
-    
-//    cout<<"R Value? ";
-//    cin>>R;
-//    cout<<"Number of starting particles? ";
-//    cin>>begin_num;
-//    cout<<"Number of Iterations? ";
-//    cin>>num_iterations;
-//    cout<<"Dimension? ";
-//    cin>>dimension;
-    
-    
-//    ostringstream dir_oss;
-//    dir_oss << "../data/dim_" << dimension;
-//    string dir_name = dir_oss.str();
-//    int dir {mkdir(dir_name)};
     
     ostringstream oss_name;
     oss_name <<"./runs/"<< direc_name<<"/data/simulation_data"<<"/size";
@@ -200,16 +173,10 @@ int main(int argc, char* argv[]){
     
     aver_file << "Time,Sum,Sqr_Sum,Iterations"<<endl;
     
-//    cout<<"Lambda Values? ";
-//    double input {};
-//    while ((cin >> input) && input != 9999)
-//        lambda_vec.push_back(input);
-
     vector<double> time_vec {};
 
     ifstream time_values_file{"time_vals.txt", ios::in};
     string input_time {};
-//    double curr_lamb {};
     if (!time_values_file) {
         cerr <<"File open error" << endl;
         return 1;
@@ -291,7 +258,6 @@ int main(int argc, char* argv[]){
 	long int num_of_particles {};
 	try{
         do {
-    //        cout<<i;
             time_file << time_gap << ",";
 
             long int num_of_particles = particle_list.at(0)->get_num_particles();
@@ -327,17 +293,9 @@ int main(int argc, char* argv[]){
         }
         catch (size_t &ex){
             particle_list.clear();
-    //        cout<<"All particles have died after "<<ex<<" iterations"<<endl<<endl;
-    //        for (size_t j=1;j<(num_iterations-ex);j++){
-    //            time_gap += 0.00002;
-    //            time_file << time_gap<<",";
-    //        }
         }
         lambda_file <<"\n";
         time_file <<"\n";
-        
-        
-    //    final_diff = abs(static_cast<double>(begin_num)-num_of_particles)/static_cast<double>(begin_num);
         
 
         if (particle_list.size()>10000){

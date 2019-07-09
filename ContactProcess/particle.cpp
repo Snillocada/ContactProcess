@@ -52,11 +52,6 @@ std::vector <std::vector <long int>> create_stensil_spawning_sites(int dim, int 
         while (ss>>value>>delimiter){
             current_coord.push_back(value);
         }
-//        std::string reversed = coordinate;
-//        std::reverse(reversed.begin(), reversed.end());
-//        ss.str (reversed);
-//        ss>>value;
-//        current_coord.push_back(value);
         
         stensil_vec.push_back(current_coord);
 }
@@ -72,41 +67,13 @@ std::vector <std::vector <long int>> create_stensil_spawning_sites(int dim, int 
     return output;
 }
 
-//std::set <std::vector <int>> get_spawning_sites(std::vector <int> loc, std::vector<std::vector<int>> stensil){
-//    auto new_locs = stensil;
-//    for (auto &i:new_locs){
-//        for (size_t j{0};j<i.size();j++){
-//            i.at(j) += loc.at(j);
-//        }
-//    }
-//    std::set <std::vector <int>> output_set(new_locs.begin(),new_locs.end());
-//    
-////    std::set<std::vector<int>>::iterator iter = output_set.begin();
-////    std::advance(iter,1);
-////    std::cout<<"stensil_"<<stensil.size()<<"spawning_"<<output_set.size()<<std::endl;
-//    
-//    return output_set;
-//}
-
 particle::particle(std::vector<long int> loc)
     : location{loc} {
-//        std::cout<<"Creating particle in location: "<<loc.at(0)<<std::endl;
         ++number_of_particles;
-//        std::set<std::vector<int>> spawning_sites {};
-//        spawning_sites = get_spawning_sites(loc, stensil);
-//        std::cout<<"I thought this was right? "<<spawning_sites.size()<<std::endl;
-//        std::iota (std::begin(spawning_sites), std::end(spawning_sites), loc-spawning_range);
-//        spawning_sites.erase(spawning_sites.begin()+spawning_range-1);
-//        std::cout<<"Size of spawning sites vector: "<<spawning_sites.size()<<std::endl<<std::endl;
-//        std::cout<<"The new spawning sites are: ";
-//        for (auto loc: spawning_sites)
-//            std::cout<<loc<<" ";
-//        std::cout<<std::endl;
 }
 
 particle::~particle()
 {
-//    std::cout<<"Destroying particle in location "<<location.at(0)<<std::endl;
     --number_of_particles;
     
     std::set<std::vector<long int>>::iterator it;
@@ -120,14 +87,11 @@ static void particle::operator delete(void* ptr)
 }
 
 long int particle::get_num_sites() const{
-//    std::cout<<"num of sites: "<<spawning_sites.size()<<std::endl;
     return particle::stensil.size();
 }
 
 void particle::initialize_system_locations(std::set<std::vector<long int>> init_pos){
-//    std::cout<<"This is the size of the location list before: "<<particle_locations.size()<<std::endl;
     particle_locations = init_pos;
-//    std::cout<<"This is the size of it after: "<<particle_locations.size()<<std::endl<<std::endl;
 }
 
 int particle::get_spawning_range() const{
@@ -152,13 +116,10 @@ std::set <std::vector<long int>>   particle::get_spawn_sites() const{
 
 void particle::set_lambda(double new_val){
     particle::lambda = new_val;
-//    std::cout<<"Lambda set to "<<new_val<<std::endl;
 }
 
 void particle::set_R(size_t new_val){
     particle::spawning_range = new_val;
-//    particle::stensil = create_stensil_spawning_sites(dimension, new_val);
-//    std::cout<<"R set to "<<new_val<<std::endl;
 }
 
 void particle::set_dim(size_t new_val){
@@ -167,7 +128,6 @@ void particle::set_dim(size_t new_val){
 }
 
 std::unique_ptr<particle> particle::spawn_particle(long int &offset){
-//    std::cout<<"size_" <<particle::particle_locations.size()<<std::endl;
     std::vector<std::vector<long int>>::iterator iter = particle::stensil.begin();
 
     std::advance(iter, offset);
@@ -175,7 +135,6 @@ std::unique_ptr<particle> particle::spawn_particle(long int &offset){
     std::vector<long int> loc{};
     
     if (iter == particle::stensil.end()){
-//        std::cout<<"bug: "<<spawning_sites.size()<<"/"<<offset<<std::endl;
         throw 1;
     }
     else{
@@ -185,13 +144,11 @@ std::unique_ptr<particle> particle::spawn_particle(long int &offset){
         }
     }
     
-//    std::cout<<"Spawning particle in location "<<loc.at(0)<<"...";
     try{
 
         if(particle::particle_locations.count(loc)==1) throw 'e';
 
         particle::particle_locations.insert(loc);
-//        std::cout<<",";
 
         std::unique_ptr<particle> new_particle(new particle(loc));
 
@@ -200,24 +157,14 @@ std::unique_ptr<particle> particle::spawn_particle(long int &offset){
     }
     catch (char ex){
         auto output = std::unique_ptr<particle> {nullptr};
-//        std::cout<<ex<<std::endl<<std::endl;
 
         return output;
     }
 }
 
 std::pair<std::unique_ptr<particle>,bool> particle::poke_particle(long int &old_rand, double prob){
-//    double rand_num{0.0};
-//    rand_num = (rand()%99)/100.0;
-//    std::default_random_engine generator;
-    
-//    std::uniform_real_distribution<double> d(0,lambda+epsilon);
-//    double rand_num = d(gen);
-    
-//    std::cout<<prob<<std::endl;
-    
+   
     if(prob<lambda){
-//        std::cout<<"Spawn"<<std::endl;
         auto spawned_part = spawn_particle(old_rand);
         
         auto ret_pair = std::make_pair (move(spawned_part),true);
@@ -225,7 +172,6 @@ std::pair<std::unique_ptr<particle>,bool> particle::poke_particle(long int &old_
     }
     else{
         std::unique_ptr<particle> u1{nullptr};
-//        std::cout<<"Kill"<<std::endl;
         return std::make_pair(move(u1),false);
     }
     
